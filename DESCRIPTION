@@ -1,0 +1,8 @@
+Package: cyrutil
+Version: 0.1
+Date: 2018-07-26
+Title: Chunyi Zhao Utilily
+Description: Utility functions that Chunyi Zhao uses.  
+Author: Chunyi Zhao <czhao19@ucsc.edu>
+Maintainer: Chunyi Zhao <czhao19@ucsc.edu>
+RoxygenNote: 6.0.1
