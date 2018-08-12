@@ -1,7 +1,7 @@
 ####################################################
 #' Get the parent working directory of the current file
 #' @param
-#' @return a string of the parent directory 
+#' @return a string of the parent directory
 #' @export
 #' @keywords directory
 #' @examples
