@@ -45,5 +45,14 @@ plot_posterior_density = function(predictive_sample, dat, plot_name, plot_ci=FAL
     if(plot_ci){
       lines(grid, lb, lty='dotted', lwd=2,  col='blue')
       lines(grid, ub, lty='dotted', lwd=2, col='blue')
+      legend_names = c('data', 'y_0', paste0(level,'% interval'))
+      cols =  c('black', 'red', 'blue')
+      ltys = c('solid', 'dashed', 'dotted')
     }
+    else{
+      legend_names = c('data', 'y_0')
+      cols = c('black', 'red')
+      ltys = c('solid', 'dashed')
+    }
+    legend('topright', legend=legend_names, col=cols, lty=ltys, bty='n')
 }
