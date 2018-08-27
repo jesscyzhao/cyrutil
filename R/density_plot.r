@@ -35,6 +35,7 @@ plot_posterior_density = function(predictive_sample, dat, plot_name, plot_ci=FAL
       grid = ci_input[['grid']]
       lb = ci_input[['lb']]
       ub = ci_input[['ub']]
+      mean = ci_input[['mean']]
       level = ci_input[['level']]
       hist_range = c(0, max(ub))
       }
@@ -45,9 +46,10 @@ plot_posterior_density = function(predictive_sample, dat, plot_name, plot_ci=FAL
     if(plot_ci){
       lines(grid, lb, lty='dotted', lwd=2,  col='blue')
       lines(grid, ub, lty='dotted', lwd=2, col='blue')
-      legend_names = c('data', 'y_0', paste0(level,'% interval'))
-      cols =  c('black', 'red', 'blue')
-      ltys = c('solid', 'dashed', 'dotted')
+      lines(grid, mean, lty='dotted', lwd=2, col='green')
+      legend_names = c('data', 'y_0', paste0(level,'% interval'), 'mean marginal')
+      cols =  c('black', 'red', 'blue', 'green')
+      ltys = c('solid', 'dashed', 'dotted', 'dotted')
     }
     else{
       legend_names = c('data', 'y_0')
