@@ -3,6 +3,8 @@
 #' @param dat: raw data
 #' @param plot_name: name of the plot
 #' @param plot_ci: boolean, default false, when true, check for additonal arguments to plot the confidence interval
+#' @param plot_hist: boolean, default true, when true, plot the histogram of raw data.
+#' @param legend_pos: string, default 'topright', can be changed to 'topleft'. 
 #' @param lb: vector of lowerbound values of CI
 #' @param ub: vector of upperbound values of CI
 #' @param grid: vector of grid based on which lb and ub are calculated.
@@ -13,7 +15,7 @@
 #' lb = dnorm(seq(-2, 2, by=0.01), mean=0, sd=1.1)
 #' ub = dnorm(seq(-2, 2, by=0.01), mean=0, sd=0.9)
 #' plot_posterior_density(sim_data, sim_data+0.01, 'Test plot', plot_ci=T, lb=lb, ub=ub, grid=seq(-2, 2, by=0.01), level='0.9')
-plot_posterior_density = function(predictive_sample, dat, plot_name, plot_ci=FALSE,...){
+plot_posterior_density = function(predictive_sample, dat, plot_name, plot_ci=FALSE, plot_hist=TRUE, legend_pos='topright', ...){
     data_density = density(dat)
     point_estimate_density = density(predictive_sample)
     hist_range = c(0, max(c(data_density$y, point_estimate_density$y)))
@@ -40,9 +42,14 @@ plot_posterior_density = function(predictive_sample, dat, plot_name, plot_ci=FAL
       hist_range = c(0, max(ub))
       }
 
-    hist(dat, main=plot_name, prob=T, ylim = hist_range, xlab='')
+    if(plot_hist){
+      hist(dat, main=plot_name, prob=T, ylim = hist_range, xlab='')
+      lines(data_density, lwd=2, lend=0)
+    }else{
+      plot(data_density, type='l', lwd=2, lend=0, ylim=hist_range, xlab='', main=plot_name)
+    }
+
     lines(point_estimate_density, lty='dashed', col='red', lwd=2)
-    lines(data_density, lwd=2, lend=0)
     if(plot_ci){
       lines(grid, lb, lty='dotted', lwd=2,  col='blue')
       lines(grid, ub, lty='dotted', lwd=2, col='blue')
@@ -56,5 +63,5 @@ plot_posterior_density = function(predictive_sample, dat, plot_name, plot_ci=FAL
       cols = c('black', 'red')
       ltys = c('solid', 'dashed')
     }
-    legend('topright', legend=legend_names, col=cols, lty=ltys, bty='n')
+    legend(legend_pos, legend=legend_names, col=cols, lty=ltys, bty='n')
 }

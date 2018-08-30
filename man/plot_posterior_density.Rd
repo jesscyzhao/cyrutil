@@ -4,8 +4,8 @@
 \alias{plot_posterior_density}
 \title{Plot the density of raw data, point estimates and confidence interval.}
 \usage{
-plot_posterior_density(predictive_sample, dat, plot_name, plot_ci = FALSE,
-  ...)
+plot_posterior_density(predictive_sample, dat, plot_name,
+  plot_ci = FALSE, plot_hist = TRUE, legend_pos = "topright", ...)
 }
 \arguments{
 \item{predictive_sample:}{the point estimates}
@@ -15,6 +15,10 @@ plot_posterior_density(predictive_sample, dat, plot_name, plot_ci = FALSE,
 \item{plot_name:}{name of the plot}
 
 \item{plot_ci:}{boolean, default false, when true, check for additonal arguments to plot the confidence interval}
+
+\item{plot_hist:}{boolean, default true, when true, plot the histogram of raw data.}
+
+\item{legend_pos:}{string, default 'topright', can be changed to 'topleft'.}
 
 \item{lb:}{vector of lowerbound values of CI}
 
